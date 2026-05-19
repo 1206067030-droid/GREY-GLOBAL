@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GREY GLOBAL LIMITED - 高品质手机壳产品详情">
+    <meta name="keywords" content="手机壳, iPhone壳, 华为手机壳, 三星手机壳, 真皮手机壳">
+    <meta name="author" content="GREY GLOBAL LIMITED">
+    
+    <!-- Favicon - 使用内联SVG，无需外部文件 -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a1a'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-weight='bold'%3EGG%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a1a'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-weight='bold'%3EGG%3C/text%3E%3C/svg%3E">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'grey-primary': '#1a1a1a',
+                        'grey-secondary': '#2d2d2d',
+                        'grey-accent': '#4a4a4a',
+                        'grey-light': '#f5f5f5',
+                        'grey-text': '#666666',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .hover-lift {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+        }
+    </style>
+    
+    <title>GREY GLOBAL - 產品詳情</title>
+</head>
+
+<body class="bg-white dark:bg-grey-primary text-grey-primary dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-grey-primary/95 backdrop-blur-md border-b border-gray-200 dark:border-grey-secondary transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-grey-primary to-grey-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-shield text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold">GREY GLOBAL</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html#home" class="text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-home">首頁</span>
+                    </a>
+                    <a href="products.html" class="text-grey-primary dark:text-white font-medium">
+                        <span data-lang="nav-products">產品</span>
+                    </a>
+                    <a href="index.html#about" class="text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-about">關於我們</span>
+                    </a>
+                    <a href="index.html#contact" class="text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-contact">聯絡我們</span>
+                    </a>
+                </div>
+                
+                <!-- Right Side Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switch -->
+                    <button id="lang-switch" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <span id="current-lang" data-lang="lang-zh">繁</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <i id="dark-icon" class="fa-solid fa-moon dark:hidden"></i>
+                        <i id="light-icon" class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-white dark:bg-grey-primary border-t border-gray-200 dark:border-grey-secondary">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html#home" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-home">首頁</span>
+                </a>
+                <a href="products.html" class="block py-2 text-grey-primary dark:text-white font-medium">
+                    <span data-lang="nav-products">產品</span>
+                </a>
+                <a href="index.html#about" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-about">關於我們</span>
+                </a>
+                <a href="index.html#contact" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-contact">聯絡我們</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="pt-24 pb-6 lg:pt-32 bg-grey-light dark:bg-grey-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-grey-text dark:text-gray-400 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-home">首頁</span>
+                </a>
+                <i class="fa-solid fa-chevron-right text-grey-text dark:text-gray-400"></i>
+                <a href="products.html" class="text-grey-text dark:text-gray-400 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-products">產品</span>
+                </a>
+                <i class="fa-solid fa-chevron-right text-grey-text dark:text-gray-400"></i>
+                <span class="text-grey-primary dark:text-white" id="breadcrumb-product">產品詳情</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail Section -->
+    <section class="py-12 lg:py-16 bg-white dark:bg-grey-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Product Images -->
+                <div class="space-y-6">
+                    <div class="bg-grey-light/50 dark:bg-grey-secondary/50 rounded-2xl overflow-hidden">
+                        <img id="main-product-image" src="images/适用苹果iphone17promax手机壳真皮air翻盖防摔保护套插卡.jpg" alt="Product Image" class="w-full h-96 lg:h-[500px] object-cover">
+                    </div>
+                    <div class="flex gap-3" id="thumbnail-container">
+                        <button class="thumbnail-btn active w-20 h-20 rounded-lg overflow-hidden border-2 border-grey-primary dark:border-white">
+                            <img src="images/适用苹果iphone17promax手机壳真皮air翻盖防摔保护套插卡.jpg" alt="Thumbnail 1" class="w-full h-full object-cover">
+                        </button>
+                        <button class="thumbnail-btn w-20 h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-grey-accent">
+                            <img src="images/适用于苹果14plus手机壳iPhone14ProMax保护套磁吸真皮防摔.jpg" alt="Thumbnail 2" class="w-full h-full object-cover">
+                        </button>
+                        <button class="thumbnail-btn w-20 h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-grey-accent">
+                            <img src="images/适用于华为mate60pro+rs手机壳保护套翻盖真皮全包防摔皮套.jpg" alt="Thumbnail 3" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product Info -->
+                <div class="space-y-6">
+                    <div>
+                        <span id="product-brand" class="inline-block px-3 py-1 bg-grey-primary/10 dark:bg-white/10 text-grey-primary dark:text-white rounded-full text-sm mb-3">Apple</span>
+                        <h1 id="product-title" class="text-2xl lg:text-3xl font-bold">iPhone 17 Pro Max 真皮翻蓋手機殼</h1>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <div class="flex">
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-grey-text dark:text-gray-400">(128 評價)</span>
+                        </div>
+                        <div class="text-sm text-grey-text dark:text-gray-400">
+                            <span data-lang="product-sold">已售: 2,580</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-baseline space-x-2">
+                        <span id="product-price" class="text-3xl font-bold text-grey-primary dark:text-white">$199</span>
+                        <span class="text-grey-text dark:text-gray-400 line-through">$249</span>
+                        <span class="px-2 py-1 bg-red-500/10 text-red-500 text-sm rounded-full">-20%</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="font-semibold">
+                            <span data-lang="product-desc-title">產品介紹</span>
+                        </h3>
+                        <p id="product-description" class="text-grey-text dark:text-gray-400 leading-relaxed">
+                            本產品採用頂級意大利頭層牛皮製造，經過嚴格的選皮、裁皮、縫製等多道工序精細打造。內置智能休眠芯片，翻蓋即可喚醒或休眠手機。精緻的車縫線設計，展現高級質感。支持MagSafe磁吸功能，可輕鬆吸附各種磁吸配件。全包防摔設計，四角加厚保護，有效緩衝意外撞擊。
+                        </p>
+                    </div>
+                    
+                    <!-- Features List -->
+                    <div class="bg-grey-light/50 dark:bg-grey-secondary/50 rounded-xl p-6">
+                        <h3 class="font-semibold mb-4">
+                            <span data-lang="product-features">產品特性</span>
+                        </h3>
+                        <ul class="space-y-3" id="product-features-list">
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>頂級意大利頭層牛皮</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>智能休眠/喚醒功能</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>支持MagSafe磁吸</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>全包防摔設計</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>精緻車縫工藝</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>精確版型，完美貼合</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Specifications -->
+                    <div class="space-y-4">
+                        <h3 class="font-semibold">
+                            <span data-lang="product-specs">產品規格</span>
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4" id="product-specs-list">
+                            <div class="bg-grey-light/30 dark:bg-grey-secondary/30 rounded-lg p-4">
+                                <span class="text-sm text-grey-text dark:text-gray-400">材質</span>
+                                <p class="font-medium">意大利頭層牛皮</p>
+                            </div>
+                            <div class="bg-grey-light/30 dark:bg-grey-secondary/30 rounded-lg p-4">
+                                <span class="text-sm text-grey-text dark:text-gray-400">顏色</span>
+                                <p class="font-medium">經典黑、商務棕、典雅紅</p>
+                            </div>
+                            <div class="bg-grey-light/30 dark:bg-grey-secondary/30 rounded-lg p-4">
+                                <span class="text-sm text-grey-text dark:text-gray-400">適用型號</span>
+                                <p class="font-medium">iPhone 17 Pro Max</p>
+                            </div>
+                            <div class="bg-grey-light/30 dark:bg-grey-secondary/30 rounded-lg p-4">
+                                <span class="text-sm text-grey-text dark:text-gray-400">重量</span>
+                                <p class="font-medium">約65g</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quantity and Add to Cart -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="font-medium">
+                                <span data-lang="product-quantity">數量</span>
+                            </span>
+                            <div class="flex items-center border border-grey-accent/30 rounded-lg">
+                                <button id="qty-minus" class="px-4 py-2 hover:bg-grey-light dark:hover:bg-grey-secondary transition-colors">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center border-x border-grey-accent/30 py-2 focus:outline-none">
+                                <button id="qty-plus" class="px-4 py-2 hover:bg-grey-light dark:hover:bg-grey-secondary transition-colors">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="add-to-cart" class="flex-1 px-8 py-3 bg-grey-primary text-white rounded-lg hover:bg-grey-secondary transition-colors font-medium flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            <span data-lang="btn-add-cart">加入購物車</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Warranty Info -->
+                    <div class="flex items-center space-x-6 text-sm text-grey-text dark:text-gray-400">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-shield-check"></i>
+                            <span><span data-lang="warranty">1年保養</span></span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-truck"></i>
+                            <span><span data-lang="shipping">免費配送</span></span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span><span data-lang="return">30天退換</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="py-12 lg:py-16 bg-gradient-to-b from-white to-grey-light dark:from-grey-primary dark:to-grey-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-3">
+                    <span data-lang="related-title">相關產品</span>
+                </h2>
+                <p class="text-grey-text dark:text-gray-400">
+                    <span data-lang="related-desc">探索更多精選手機殼</span>
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Related Product 1 -->
+                <div class="bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="images/适用于苹果14plus手机壳iPhone14ProMax保护套磁吸真皮防摔.jpg" alt="iPhone 14 Pro Max 磁吸手機殼" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-grey-primary text-white px-2 py-1 rounded-full text-xs">Apple</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1 line-clamp-1">iPhone 14 Pro Max 磁吸真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-xs mb-2">$179</p>
+                        <a href="product-detail.html?id=2" class="text-grey-accent hover:text-grey-primary dark:hover:text-white text-xs flex items-center">
+                            <span data-lang="btn-detail">查看詳情</span>
+                            <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Related Product 2 -->
+                <div class="bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="images/适用于华为mate60pro+rs手机壳保护套翻盖真皮全包防摔皮套.jpg" alt="Huawei Mate 60 Pro+ 真皮手機殼" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs">Huawei</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1 line-clamp-1">Huawei Mate 60 Pro+ 真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-xs mb-2">$189</p>
+                        <a href="product-detail.html?id=5" class="text-grey-accent hover:text-grey-primary dark:hover:text-white text-xs flex items-center">
+                            <span data-lang="btn-detail">查看詳情</span>
+                            <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Related Product 3 -->
+                <div class="bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="images/适用于三星GalaxyS25+plus手机壳真皮Ultra5G保护套翻盖插卡.jpg" alt="Samsung Galaxy S25+ 真皮手機殼" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-blue-600 text-white px-2 py-1 rounded-full text-xs">Samsung</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1 line-clamp-1">Samsung Galaxy S25+ 真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-xs mb-2">$189</p>
+                        <a href="product-detail.html?id=9" class="text-grey-accent hover:text-grey-primary dark:hover:text-white text-xs flex items-center">
+                            <span data-lang="btn-detail">查看詳情</span>
+                            <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Related Product 4 -->
+                <div class="bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="images/适用苹果iphone16Epromax手机壳保护套plus真皮翻盖全包防摔.jpg" alt="iPhone 16 Pro Max 真皮手機殼" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 left-3 bg-grey-primary text-white px-2 py-1 rounded-full text-xs">Apple</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-sm mb-1 line-clamp-1">iPhone 16 Pro Max 真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-xs mb-2">$209</p>
+                        <a href="product-detail.html?id=3" class="text-grey-accent hover:text-grey-primary dark:hover:text-white text-xs flex items-center">
+                            <span data-lang="btn-detail">查看詳情</span>
+                            <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-grey-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-white to-gray-300 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-shield text-grey-primary"></i>
+                        </div>
+                        <span class="text-xl font-bold">GREY GLOBAL</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        <span data-lang="footer-desc">專注於高品質手機殼的設計與製造，為您的愛機提供完美保護。</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-links">快速連結</span>
+                    </h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-home">首頁</span>
+                        </a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-products">產品</span>
+                        </a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-about">關於我們</span>
+                        </a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-contact">聯絡我們</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-products">產品系列</span>
+                    </h3>
+                    <ul class="space-y-2">
+                        <li><a href="products.html?brand=apple" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-apple">Apple 系列</span>
+                        </a></li>
+                        <li><a href="products.html?brand=huawei" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-huawei">Huawei 系列</span>
+                        </a></li>
+                        <li><a href="products.html?brand=samsung" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-samsung">Samsung 系列</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-contact">聯絡資訊</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone mr-2"></i> 852 9047 2207
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope mr-2"></i> RichardGonzalez1721@outlook.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-map-marker-alt mr-2"></i> 香港九龍旺角彌敦道688號
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 GREY GLOBAL LIMITED. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const html = document.documentElement;
+        
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Thumbnail Navigation
+        const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
+        const mainImage = document.getElementById('main-product-image');
+        
+        thumbnailBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                thumbnailBtns.forEach(b => b.classList.remove('active', 'border-grey-primary', 'dark:border-white'));
+                thumbnailBtns.forEach(b => b.classList.add('border-transparent'));
+                
+                btn.classList.add('active', 'border-grey-primary', 'dark:border-white');
+                btn.classList.remove('border-transparent');
+                
+                const imgSrc = btn.querySelector('img').src;
+                mainImage.src = imgSrc;
+            });
+        });
+        
+        // Quantity Controls
+        const qtyMinus = document.getElementById('qty-minus');
+        const qtyPlus = document.getElementById('qty-plus');
+        const quantity = document.getElementById('quantity');
+        
+        qtyMinus.addEventListener('click', () => {
+            if (quantity.value > 1) {
+                quantity.value = parseInt(quantity.value) - 1;
+            }
+        });
+        
+        qtyPlus.addEventListener('click', () => {
+            if (quantity.value < 10) {
+                quantity.value = parseInt(quantity.value) + 1;
+            }
+        });
+        
+        // Add to Cart
+        const addToCart = document.getElementById('add-to-cart');
+        
+        addToCart.addEventListener('click', () => {
+            alert('已成功加入購物車！');
+        });
+        
+        // Product Data by ID
+        const productData = {
+            1: {
+                title: 'iPhone 17 Pro Max 真皮翻蓋手機殼',
+                brand: 'Apple',
+                price: '$199',
+                originalPrice: '$249',
+                description: '本產品採用頂級意大利頭層牛皮製造，經過嚴格的選皮、裁皮、縫製等多道工序精細打造。內置智能休眠芯片，翻蓋即可喚醒或休眠手機。精緻的車縫線設計，展現高級質感。支持MagSafe磁吸功能，可輕鬆吸附各種磁吸配件。全包防摔設計，四角加厚保護，有效緩衝意外撞擊。',
+                features: ['頂級意大利頭層牛皮', '智能休眠/喚醒功能', '支持MagSafe磁吸', '全包防摔設計', '精緻車縫工藝', '精確版型，完美貼合'],
+                specs: {
+                    material: '意大利頭層牛皮',
+                    color: '經典黑、商務棕、典雅紅',
+                    model: 'iPhone 17 Pro Max',
+                    weight: '約65g'
+                },
+                sold: 2580,
+                image: 'images/适用苹果iphone17promax手机壳真皮air翻盖防摔保护套插卡.jpg'
+            },
+            2: {
+                title: 'iPhone 14 Pro Max 磁吸真皮手機殼',
+                brand: 'Apple',
+                price: '$179',
+                originalPrice: '$219',
+                description: '採用優質真皮材料，內置強力磁吸環，完美兼容MagSafe配件。輕薄設計不影響手感，同時提供可靠的防摔保護。精細的做工展現高級質感，是商務人士的理想選擇。',
+                features: ['優質真皮材料', '內置磁吸環', '支持MagSafe配件', '輕薄設計', '全包防摔', '精緻做工'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、深邃藍',
+                    model: 'iPhone 14 Pro Max',
+                    weight: '約55g'
+                },
+                sold: 3240,
+                image: 'images/适用于苹果14plus手机壳iPhone14ProMax保护套磁吸真皮防摔.jpg'
+            },
+            3: {
+                title: 'iPhone 16 Pro Max 真皮翻蓋手機殼',
+                brand: 'Apple',
+                price: '$209',
+                originalPrice: '$259',
+                description: '高品質真皮翻蓋設計，提供全方位保護。智能視窗顯示，無需翻蓋即可查看時間和來電。精緻車縫線，展現卓越工藝。支持插卡功能，方便攜帶卡片。',
+                features: ['高品質真皮', '智能視窗設計', '支持插卡功能', '全包保護', '精緻車縫', '精確版型'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、商務棕',
+                    model: 'iPhone 16 Pro Max',
+                    weight: '約70g'
+                },
+                sold: 1890,
+                image: 'images/适用苹果iphone16Epromax手机壳保护套plus真皮翻盖全包防摔.jpg'
+            },
+            4: {
+                title: 'iPhone 12 Mini 真皮手機殼',
+                brand: 'Apple',
+                price: '$159',
+                originalPrice: '$199',
+                description: '專為小手機設計的輕薄真皮保護殼，提供完美的握持體驗。磁吸後蓋設計，方便安裝和拆卸。精緻的質感為您的小手機增添時尚魅力。',
+                features: ['輕薄設計', '磁吸後蓋', '優質真皮', '精確版型', '防刮耐磨', '時尚外觀'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、玫瑰金',
+                    model: 'iPhone 12 Mini',
+                    weight: '約45g'
+                },
+                sold: 1560,
+                image: 'images/适用于苹果iphone12mini手机壳真皮后盖磁吸pro max保护皮套.jpg'
+            },
+            5: {
+                title: 'Huawei Mate 60 Pro+ 真皮翻蓋手機殼',
+                brand: 'Huawei',
+                price: '$189',
+                originalPrice: '$229',
+                description: '專為Huawei Mate 60 Pro+設計的真皮翻蓋保護套。智能視窗設計，支持休眠/喚醒功能。精緻的做工和高級質感，完美匹配旗艦手機的定位。',
+                features: ['頂級真皮', '智能視窗', '休眠/喚醒功能', '全包保護', '精緻車縫', '精確版型'],
+                specs: {
+                    material: '意大利頭層牛皮',
+                    color: '經典黑、商務棕',
+                    model: 'Huawei Mate 60 Pro+',
+                    weight: '約75g'
+                },
+                sold: 2100,
+                image: 'images/适用于华为mate60pro+rs手机壳保护套翻盖真皮全包防摔皮套.jpg'
+            },
+            6: {
+                title: 'Huawei Mate 80 Pro Max 磁吸真皮手機殼',
+                brand: 'Huawei',
+                price: '$219',
+                originalPrice: '$269',
+                description: '頂級真皮材料配備磁吸翻蓋設計，為您的Mate 80 Pro Max提供全方位保護。智能休眠功能，精緻車縫工藝，展現高級商務風格。',
+                features: ['頂級真皮', '磁吸翻蓋', '智能休眠', '全包防摔', '商務風格', '精確版型'],
+                specs: {
+                    material: '意大利頭層牛皮',
+                    color: '經典黑、深棕色',
+                    model: 'Huawei Mate 80 Pro Max',
+                    weight: '約80g'
+                },
+                sold: 1280,
+                image: 'images/适用华为mate80promax手机壳保护套翻盖真皮磁吸全包防摔皮套.jpg'
+            },
+            7: {
+                title: 'Huawei Mate 40 Pro 智能視窗手機殼',
+                brand: 'Huawei',
+                price: '$169',
+                originalPrice: '$209',
+                description: '智能視窗設計，支持休眠/喚醒功能。精緻車縫線，展現卓越工藝。全包保護設計，有效防摔防刮。',
+                features: ['智能視窗', '休眠/喚醒', '精緻車縫', '全包保護', '防摔防刮', '精確版型'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、商務棕',
+                    model: 'Huawei Mate 40 Pro',
+                    weight: '約68g'
+                },
+                sold: 2890,
+                image: 'images/适用华为mate40 pro手机壳真皮40pro+翻盖智能视窗手机皮套.jpg'
+            },
+            8: {
+                title: 'Huawei P40 Pro 鱷魚紋真皮手機殼',
+                brand: 'Huawei',
+                price: '$149',
+                originalPrice: '$189',
+                description: '獨特鱷魚紋設計，展現高級質感。智能休眠功能，全包保護設計。輕薄舒適的手感，完美搭配您的P40 Pro。',
+                features: ['鱷魚紋設計', '智能休眠', '全包保護', '輕薄舒適', '高級質感', '精確版型'],
+                specs: {
+                    material: '頭層牛皮（鱷魚紋）',
+                    color: '經典黑、深棕色',
+                    model: 'Huawei P40 Pro',
+                    weight: '約58g'
+                },
+                sold: 1950,
+                image: 'images/适用华为p40 pro手机壳真皮翻盖p40智能休眠视窗套鳄鱼纹商务.jpg'
+            },
+            9: {
+                title: 'Samsung Galaxy S25+ 真皮翻蓋手機殼',
+                brand: 'Samsung',
+                price: '$189',
+                originalPrice: '$229',
+                description: '專為Samsung Galaxy S25+設計的真皮翻蓋保護套。支持插卡功能，方便攜帶卡片。精緻做工，5G兼容，完美保護您的愛機。',
+                features: ['優質真皮', '支持插卡', '5G兼容', '全包保護', '精緻做工', '精確版型'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、商務棕',
+                    model: 'Samsung Galaxy S25+',
+                    weight: '約65g'
+                },
+                sold: 1780,
+                image: 'images/适用于三星GalaxyS25+plus手机壳真皮Ultra5G保护套翻盖插卡.jpg'
+            },
+            10: {
+                title: 'Samsung Z Flip 7 折疊屏真皮手機殼',
+                brand: 'Samsung',
+                price: '$229',
+                originalPrice: '$279',
+                description: '專為折疊屏手機設計的真皮保護套，全包保護設計，磁吸翻蓋。精緻做工，時尚外觀，完美搭配您的Z Flip 7。',
+                features: ['專為折疊屏設計', '全包保護', '磁吸翻蓋', '精緻做工', '時尚外觀', '精確版型'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、玫瑰金',
+                    model: 'Samsung Z Flip 7',
+                    weight: '約55g'
+                },
+                sold: 980,
+                image: 'images/适用于三星ZFlip7手机壳折叠屏保护套翻盖真皮全包防摔磁吸.jpg'
+            },
+            11: {
+                title: 'Samsung Galaxy S23 Ultra 真皮手機殼',
+                brand: 'Samsung',
+                price: '$179',
+                originalPrice: '$219',
+                description: '高品質真皮保護套，智能休眠功能。全包防摔設計，精緻車縫工藝。完美匹配Galaxy S23 Ultra的大尺寸屏幕。',
+                features: ['高品質真皮', '智能休眠', '全包防摔', '精緻車縫', '大屏适配', '精確版型'],
+                specs: {
+                    material: '頭層牛皮',
+                    color: '經典黑、商務棕',
+                    model: 'Samsung Galaxy S23 Ultra',
+                    weight: '約72g'
+                },
+                sold: 2450,
+                image: 'images/适用三星S23 Ultra手机壳真皮+plus智能保护套休眠翻盖防摔.jpg'
+            },
+            12: {
+                title: 'Samsung Galaxy S26 Ultra 真皮翻蓋手機殼',
+                brand: 'Samsung',
+                price: '$199',
+                originalPrice: '$249',
+                description: '新款Galaxy S26 Ultra專用真皮翻蓋保護套。支持插卡功能，智能休眠，全包保護。精緻做工展現高級質感。',
+                features: ['新款專用', '支持插卡', '智能休眠', '全包保護', '精緻做工', '精確版型'],
+                specs: {
+                    material: '意大利頭層牛皮',
+                    color: '經典黑、深邃藍',
+                    model: 'Samsung Galaxy S26 Ultra',
+                    weight: '約75g'
+                },
+                sold: 890,
+                image: 'images/适用于三星S26Ultra手机壳真皮Galaxy+plus保护套翻盖插卡.jpg'
+            }
+        };
+        
+        // Load product data based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || '1';
+        const product = productData[productId] || productData['1'];
+        
+        if (product) {
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('product-brand').textContent = product.brand;
+            document.getElementById('product-price').textContent = product.price;
+            document.querySelector('.line-through').textContent = product.originalPrice;
+            document.getElementById('product-description').textContent = product.description;
+            document.querySelector('.text-grey-text.dark\\:text-gray-400').textContent = `已售: ${product.sold}`;
+            document.getElementById('breadcrumb-product').textContent = product.title;
+            
+            // Update features
+            const featuresList = document.getElementById('product-features-list');
+            featuresList.innerHTML = '';
+            product.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center space-x-3';
+                li.innerHTML = `<i class="fa-solid fa-check-circle text-green-500"></i><span>${feature}</span>`;
+                featuresList.appendChild(li);
+            });
+            
+            // Update specs
+            const specsList = document.getElementById('product-specs-list');
+            specsList.innerHTML = '';
+            const specLabels = { material: '材質', color: '顏色', model: '適用型號', weight: '重量' };
+            Object.entries(product.specs).forEach(([key, value]) => {
+                const div = document.createElement('div');
+                div.className = 'bg-grey-light/30 dark:bg-grey-secondary/30 rounded-lg p-4';
+                div.innerHTML = `<span class="text-sm text-grey-text dark:text-gray-400">${specLabels[key] || key}</span><p class="font-medium">${value}</p>`;
+                specsList.appendChild(div);
+            });
+            
+            // Update brand badge color
+            const brandBadge = document.getElementById('product-brand');
+            if (product.brand === 'Apple') {
+                brandBadge.className = 'inline-block px-3 py-1 bg-grey-primary/10 dark:bg-white/10 text-grey-primary dark:text-white rounded-full text-sm mb-3';
+            } else if (product.brand === 'Huawei') {
+                brandBadge.className = 'inline-block px-3 py-1 bg-red-500/10 text-red-500 rounded-full text-sm mb-3';
+            } else if (product.brand === 'Samsung') {
+                brandBadge.className = 'inline-block px-3 py-1 bg-blue-600/10 text-blue-600 rounded-full text-sm mb-3';
+            }
+            
+            // Update main image
+            mainImage.src = product.image;
+            document.querySelector('.thumbnail-btn.active img').src = product.image;
+        }
+        
+        // Language Switch
+        const langSwitch = document.getElementById('lang-switch');
+        const currentLang = document.getElementById('current-lang');
+        
+        const translations = {
+            en: {
+                'nav-home': 'Home',
+                'nav-products': 'Products',
+                'nav-about': 'About Us',
+                'nav-contact': 'Contact',
+                'lang-zh': 'EN',
+                'product-sold': 'Sold: ',
+                'product-desc-title': 'Product Description',
+                'product-features': 'Product Features',
+                'product-specs': 'Specifications',
+                'product-quantity': 'Quantity',
+                'btn-add-cart': 'Add to Cart',
+                'warranty': '1 Year Warranty',
+                'shipping': 'Free Shipping',
+                'return': '30 Day Return',
+                'related-title': 'Related Products',
+                'related-desc': 'Explore more premium phone cases',
+                'btn-detail': 'Details',
+                'footer-desc': 'Specializing in high-quality phone case design and manufacturing, providing perfect protection for your device.',
+                'footer-links': 'Quick Links',
+                'footer-products': 'Product Series',
+                'footer-contact': 'Contact Information',
+                'filter-apple': 'Apple',
+                'filter-huawei': 'Huawei',
+                'filter-samsung': 'Samsung'
+            },
+            zh: {
+                'nav-home': '首頁',
+                'nav-products': '產品',
+                'nav-about': '關於我們',
+                'nav-contact': '聯絡我們',
+                'lang-zh': '繁',
+                'product-sold': '已售: ',
+                'product-desc-title': '產品介紹',
+                'product-features': '產品特性',
+                'product-specs': '產品規格',
+                'product-quantity': '數量',
+                'btn-add-cart': '加入購物車',
+                'warranty': '1年保養',
+                'shipping': '免費配送',
+                'return': '30天退換',
+                'related-title': '相關產品',
+                'related-desc': '探索更多精選手機殼',
+                'btn-detail': '查看詳情',
+                'footer-desc': '專注於高品質手機殼的設計與製造，為您的愛機提供完美保護。',
+                'footer-links': '快速連結',
+                'footer-products': '產品系列',
+                'footer-contact': '聯絡資訊',
+                'filter-apple': 'Apple',
+                'filter-huawei': 'Huawei',
+                'filter-samsung': 'Samsung'
+            }
+        };
+        
+        let currentLanguage = localStorage.getItem('language') || 'zh';
+        
+        function switchLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('language', currentLanguage);
+            
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[currentLanguage][key]) {
+                    el.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            currentLang.textContent = currentLanguage === 'zh' ? '繁' : 'EN';
+            document.documentElement.lang = currentLanguage === 'zh' ? 'zh-HK' : 'en';
+            
+            // Update product description language
+            if (currentLanguage === 'en') {
+                document.getElementById('product-description').textContent = 'This product is made of top-grade Italian full-grain leather, carefully crafted through strict processes including leather selection, cutting, and sewing. Built-in smart sleep chip allows wake/sleep by flipping the cover. Exquisite stitching design showcases premium texture. Supports MagSafe magnetic function for easy attachment of various magnetic accessories. Full-body drop protection design with reinforced corners effectively cushions accidental impacts.';
+            } else {
+                document.getElementById('product-description').textContent = product.description;
+            }
+        }
+        
+        langSwitch.addEventListener('click', switchLanguage);
+        switchLanguage();
+    </script>
+</body>
+</html>

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GREY GLOBAL LIMITED - 高品质手机壳定制专家，提供苹果、华为、三星等品牌手机壳">
+    <meta name="keywords" content="手机壳, iPhone壳, 华为手机壳, 三星手机壳, 真皮手机壳, 定制手机壳">
+    <meta name="author" content="GREY GLOBAL LIMITED">
+    
+    <!-- Favicon - 使用内联SVG，无需外部文件 -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a1a'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-weight='bold'%3EGG%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a1a'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-weight='bold'%3EGG%3C/text%3E%3C/svg%3E">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'grey-primary': '#1a1a1a',
+                        'grey-secondary': '#2d2d2d',
+                        'grey-accent': '#4a4a4a',
+                        'grey-light': '#f5f5f5',
+                        'grey-text': '#666666',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .hover-lift {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+            .fade-in {
+                animation: fadeIn 0.6s ease-in-out;
+            }
+            .slide-up {
+                animation: slideUp 0.6s ease-out;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+    </style>
+    
+    <title>GREY GLOBAL LIMITED - 高品质手机壳定制</title>
+</head>
+
+<body class="bg-white dark:bg-grey-primary text-grey-primary dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-grey-primary/95 backdrop-blur-md border-b border-gray-200 dark:border-grey-secondary transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-grey-primary to-grey-accent rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-shield text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold">GREY GLOBAL</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-home">首頁</span>
+                    </a>
+                    <a href="#products" class="nav-link text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-products">產品</span>
+                    </a>
+                    <a href="#about" class="nav-link text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-about">關於我們</span>
+                    </a>
+                    <a href="#contact" class="nav-link text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white transition-colors">
+                        <span data-lang="nav-contact">聯絡我們</span>
+                    </a>
+                </div>
+                
+                <!-- Right Side Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switch -->
+                    <button id="lang-switch" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <span id="current-lang" data-lang="lang-zh">繁</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <i id="dark-icon" class="fa-solid fa-moon dark:hidden"></i>
+                        <i id="light-icon" class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-grey-secondary transition-colors">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-white dark:bg-grey-primary border-t border-gray-200 dark:border-grey-secondary">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-home">首頁</span>
+                </a>
+                <a href="#products" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-products">產品</span>
+                </a>
+                <a href="#about" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-about">關於我們</span>
+                </a>
+                <a href="#contact" class="block py-2 text-grey-text dark:text-gray-300 hover:text-grey-primary dark:hover:text-white">
+                    <span data-lang="nav-contact">聯絡我們</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-br from-grey-light to-white dark:from-grey-secondary dark:to-grey-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                        <span data-lang="hero-title">高品質手機殼</span>
+                        <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-grey-primary to-grey-accent">
+                            <span data-lang="hero-subtitle">精緻定制</span>
+                        </span>
+                    </h1>
+                    <p class="text-lg text-grey-text dark:text-gray-400 mb-8 max-w-lg">
+                        <span data-lang="hero-desc">GREY GLOBAL LIMITED 專注於高品質真皮手機殼的設計與製造，為您的愛機提供完美保護。適用於蘋果、華為、三星等多個品牌。</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#products" class="inline-flex items-center justify-center px-8 py-4 bg-grey-primary text-white rounded-lg hover:bg-grey-secondary transition-colors font-medium">
+                            <span data-lang="btn-shop">立即購買</span>
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#about" class="inline-flex items-center justify-center px-8 py-4 border border-grey-accent text-grey-primary dark:text-white rounded-lg hover:bg-grey-accent hover:text-white dark:hover:bg-grey-secondary transition-colors font-medium">
+                            <span data-lang="btn-learn">了解更多</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative slide-up">
+                    <div class="relative z-10">
+                        <img src="images/GG适用苹果iphone17promax手机壳真皮air翻盖防摔保护套插卡.jpg" alt="Premium Phone Case" class="w-full max-w-md mx-auto rounded-2xl shadow-2xl hover-lift">
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-32 h-32 bg-grey-accent/10 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-48 h-48 bg-grey-primary/10 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 lg:py-24 bg-white dark:bg-grey-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+                    <span data-lang="features-title">為什麼選擇我們</span>
+                </h2>
+                <p class="text-grey-text dark:text-gray-400 max-w-2xl mx-auto">
+                    <span data-lang="features-desc">我們堅持品質至上，為客戶提供最優質的產品和服務</span>
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-grey-light/50 dark:bg-grey-secondary/50 rounded-xl hover-lift">
+                    <div class="w-16 h-16 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-shield text-2xl text-grey-primary dark:text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">
+                        <span data-lang="feature-1">優質材料</span>
+                    </h3>
+                    <p class="text-grey-text dark:text-gray-400 text-sm">
+                        <span data-lang="feature-1-desc">採用頂級真皮材料，質感卓越</span>
+                    </p>
+                </div>
+                
+                <div class="text-center p-6 bg-grey-light/50 dark:bg-grey-secondary/50 rounded-xl hover-lift">
+                    <div class="w-16 h-16 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl text-grey-primary dark:text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">
+                        <span data-lang="feature-2">精準版型</span>
+                    </h3>
+                    <p class="text-grey-text dark:text-gray-400 text-sm">
+                        <span data-lang="feature-2-desc">精確匹配各種手機型號</span>
+                    </p>
+                </div>
+                
+                <div class="text-center p-6 bg-grey-light/50 dark:bg-grey-secondary/50 rounded-xl hover-lift">
+                    <div class="w-16 h-16 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-award text-2xl text-grey-primary dark:text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">
+                        <span data-lang="feature-3">品質保證</span>
+                    </h3>
+                    <p class="text-grey-text dark:text-gray-400 text-sm">
+                        <span data-lang="feature-3-desc">嚴格品控流程，確保品質</span>
+                    </p>
+                </div>
+                
+                <div class="text-center p-6 bg-grey-light/50 dark:bg-grey-secondary/50 rounded-xl hover-lift">
+                    <div class="w-16 h-16 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-headphones text-2xl text-grey-primary dark:text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">
+                        <span data-lang="feature-4">售後服務</span>
+                    </h3>
+                    <p class="text-grey-text dark:text-gray-400 text-sm">
+                        <span data-lang="feature-4-desc">完善的售後服務體系</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 lg:py-24 bg-gradient-to-b from-white to-grey-light dark:from-grey-primary dark:to-grey-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+                    <span data-lang="products-title">精選產品</span>
+                </h2>
+                <p class="text-grey-text dark:text-gray-400 max-w-2xl mx-auto">
+                    <span data-lang="products-desc">探索我們精心設計的高品質手機殼系列</span>
+                </p>
+            </div>
+            
+            <!-- Brand Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button class="brand-filter active px-6 py-2 bg-grey-primary text-white rounded-full text-sm font-medium transition-colors" data-brand="all">
+                    <span data-lang="filter-all">全部</span>
+                </button>
+                <button class="brand-filter px-6 py-2 bg-white dark:bg-grey-secondary text-grey-primary dark:text-white rounded-full text-sm font-medium border border-grey-accent/30 transition-colors" data-brand="apple">
+                    <span data-lang="filter-apple">Apple</span>
+                </button>
+                <button class="brand-filter px-6 py-2 bg-white dark:bg-grey-secondary text-grey-primary dark:text-white rounded-full text-sm font-medium border border-grey-accent/30 transition-colors" data-brand="huawei">
+                    <span data-lang="filter-huawei">Huawei</span>
+                </button>
+                <button class="brand-filter px-6 py-2 bg-white dark:bg-grey-secondary text-grey-primary dark:text-white rounded-full text-sm font-medium border border-grey-accent/30 transition-colors" data-brand="samsung">
+                    <span data-lang="filter-samsung">Samsung</span>
+                </button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="apple">
+                    <div class="relative overflow-hidden">
+                        <img src="images/GG适用苹果iphone17promax手机壳真皮air翻盖防摔保护套插卡.jpg" alt="iPhone 17 Pro Max 真皮手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-grey-primary text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-apple">Apple</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">iPhone 17 Pro Max 真皮翻蓋手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">頂級真皮材質，智能休眠功能，精緻做工，完美保護您的愛機。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$199</span>
+                            <a href="product-detail.html?id=1" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="apple">
+                    <div class="relative overflow-hidden">
+                        <img src="images/GG适用于苹果14plus手机壳iPhone14ProMax保护套磁吸真皮防摔.jpg" alt="iPhone 14 Pro Max 磁吸手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-grey-primary text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-apple">Apple</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">iPhone 14 Pro Max 磁吸真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">內置磁吸環，支持MagSafe配件，強力吸附，便捷充電。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$179</span>
+                            <a href="product-detail.html?id=2" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="huawei">
+                    <div class="relative overflow-hidden">
+                        <img src="images/GG适用于华为mate60pro+rs手机壳保护套翻盖真皮全包防摔皮套.jpg" alt="Huawei Mate 60 Pro+ 真皮手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-huawei">Huawei</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">Huawei Mate 60 Pro+ 真皮翻蓋手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">智能視窗設計，無需翻蓋即可查看時間、來電等信息。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$189</span>
+                            <a href="product-detail.html?id=3" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="huawei">
+                    <div class="relative overflow-hidden">
+                        <img src="images/G适用华为mate80promax手机壳保护套翻盖真皮磁吸全包防摔皮套.jpg" alt="Huawei Mate 80 Pro Max 真皮手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-huawei">Huawei</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">Huawei Mate 80 Pro Max 磁吸真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">全包防摔設計，磁吸翻蓋，商務風格，高級質感。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$219</span>
+                            <a href="product-detail.html?id=4" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 5 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="samsung">
+                    <div class="relative overflow-hidden">
+                        <img src="images/GG适用于三星GalaxyS25+plus手机壳真皮Ultra5G保护套翻盖插卡.jpg" alt="Samsung Galaxy S25+ 真皮手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-samsung">Samsung</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">Samsung Galaxy S25+ 真皮翻蓋手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">支持插卡功能，5G兼容，精緻車縫線，商務必備。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$189</span>
+                            <a href="product-detail.html?id=5" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 6 -->
+                <div class="product-card bg-white dark:bg-grey-secondary rounded-2xl overflow-hidden shadow-lg hover-lift" data-brand="samsung">
+                    <div class="relative overflow-hidden">
+                        <img src="images/适用于三星ZFlip7手机壳折叠屏保护套翻盖真皮全包防摔磁吸.jpg" alt="Samsung Z Flip 7 真皮手機殼" class="w-full h-64 object-cover" loading="lazy">
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                            <span data-lang="brand-samsung">Samsung</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2">Samsung Z Flip 7 折疊屏真皮手機殼</h3>
+                        <p class="text-grey-text dark:text-gray-400 text-sm mb-4 line-clamp-2">專為折疊屏設計，全包保護，磁吸翻蓋，時尚美觀。</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-grey-primary dark:text-white">$229</span>
+                            <a href="product-detail.html?id=6" class="text-grey-accent hover:text-grey-primary dark:hover:text-white transition-colors flex items-center">
+                                <span data-lang="btn-detail">查看詳情</span>
+                                <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="products.html" class="inline-flex items-center px-8 py-4 border border-grey-accent text-grey-primary dark:text-white rounded-lg hover:bg-grey-primary hover:text-white transition-colors font-medium">
+                    <span data-lang="btn-view-all">查看全部產品</span>
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 lg:py-24 bg-white dark:bg-grey-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="images/G适用于iphone78plus手机壳真皮G苹果Xr:XsGMax保护套商务皮套.jpg" alt="About Us" class="rounded-2xl shadow-xl">
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-grey-primary/10 rounded-full blur-3xl"></div>
+                </div>
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                        <span data-lang="about-title">關於 GREY GLOBAL</span>
+                    </h2>
+                    <div class="space-y-4 text-grey-text dark:text-gray-400">
+                        <p>
+                            <span data-lang="about-desc-1">GREY GLOBAL LIMITED 成立於香港，專注於高端手機配件的研發與銷售。我們堅持使用最優質的材料，結合精湛的工藝，為客戶提供卓越的產品體驗。</span>
+                        </p>
+                        <p>
+                            <span data-lang="about-desc-2">我們的核心團隊擁有超過10年的手機配件行業經驗，深知消費者對品質的追求。每一款產品都經過嚴格的品質檢測，確保為客戶帶來最完美的保護方案。</span>
+                        </p>
+                        <p>
+                            <span data-lang="about-desc-3">無論是蘋果、華為還是三星，我們都能提供精確匹配的手機殼，讓您的愛機得到全方位的保護。</span>
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-grey-primary dark:text-white">10+</div>
+                            <div class="text-sm text-grey-text dark:text-gray-400">
+                                <span data-lang="stat-1">年行業經驗</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-grey-primary dark:text-white">50+</div>
+                            <div class="text-sm text-grey-text dark:text-gray-400">
+                                <span data-lang="stat-2">手機型號</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-grey-primary dark:text-white">100K+</div>
+                            <div class="text-sm text-grey-text dark:text-gray-400">
+                                <span data-lang="stat-3">滿意客戶</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 lg:py-24 bg-gradient-to-b from-grey-light to-white dark:from-grey-secondary dark:to-grey-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+                    <span data-lang="contact-title">聯絡我們</span>
+                </h2>
+                <p class="text-grey-text dark:text-gray-400 max-w-2xl mx-auto">
+                    <span data-lang="contact-desc">如有任何查詢或合作意向，歡迎隨時聯絡我們</span>
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-white dark:bg-grey-secondary p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-map-marker-alt text-grey-primary dark:text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">
+                                    <span data-lang="contact-address">公司地址</span>
+                                </h3>
+                                <p class="text-grey-text dark:text-gray-400 text-sm">香港九龍旺角彌敦道688號</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-grey-secondary p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone text-grey-primary dark:text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">
+                                    <span data-lang="contact-phone">聯絡電話</span>
+                                </h3>
+                                <p class="text-grey-text dark:text-gray-400 text-sm">852 9047 2207</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-grey-secondary p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-envelope text-grey-primary dark:text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">
+                                    <span data-lang="contact-email">電子郵箱</span>
+                                </h3>
+                                <p class="text-grey-text dark:text-gray-400 text-sm">RichardGonzalez1721@outlook.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-grey-secondary p-6 rounded-xl">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-grey-primary/10 dark:bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-user text-grey-primary dark:text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">
+                                    <span data-lang="contact-person">聯絡人</span>
+                                </h3>
+                                <p class="text-grey-text dark:text-gray-400 text-sm">林一心</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <form id="contact-form" class="bg-white dark:bg-grey-secondary p-8 rounded-xl">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">
+                                    <span data-lang="form-name">姓名</span>
+                                </label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-grey-light dark:bg-grey-primary border border-gray-200 dark:border-grey-accent rounded-lg focus:ring-2 focus:ring-grey-primary focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">
+                                    <span data-lang="form-email">電子郵箱</span>
+                                </label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-grey-light dark:bg-grey-primary border border-gray-200 dark:border-grey-accent rounded-lg focus:ring-2 focus:ring-grey-primary focus:border-transparent transition-all">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="subject" class="block text-sm font-medium mb-2">
+                                <span data-lang="form-subject">主題</span>
+                            </label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 bg-grey-light dark:bg-grey-primary border border-gray-200 dark:border-grey-accent rounded-lg focus:ring-2 focus:ring-grey-primary focus:border-transparent transition-all">
+                        </div>
+                        <div class="mt-6">
+                            <label for="message" class="block text-sm font-medium mb-2">
+                                <span data-lang="form-message">留言</span>
+                            </label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-grey-light dark:bg-grey-primary border border-gray-200 dark:border-grey-accent rounded-lg focus:ring-2 focus:ring-grey-primary focus:border-transparent transition-all resize-none"></textarea>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="w-full px-8 py-4 bg-grey-primary text-white rounded-lg hover:bg-grey-secondary transition-colors font-medium">
+                                <span data-lang="btn-submit">發送留言</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-grey-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-white to-gray-300 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-shield text-grey-primary"></i>
+                        </div>
+                        <span class="text-xl font-bold">GREY GLOBAL</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        <span data-lang="footer-desc">專注於高品質手機殼的設計與製造，為您的愛機提供完美保護。</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-links">快速連結</span>
+                    </h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-home">首頁</span>
+                        </a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-products">產品</span>
+                        </a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-about">關於我們</span>
+                        </a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="nav-contact">聯絡我們</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-products">產品系列</span>
+                    </h3>
+                    <ul class="space-y-2">
+                        <li><a href="products.html?brand=apple" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-apple">Apple 系列</span>
+                        </a></li>
+                        <li><a href="products.html?brand=huawei" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-huawei">Huawei 系列</span>
+                        </a></li>
+                        <li><a href="products.html?brand=samsung" class="text-gray-400 hover:text-white transition-colors text-sm">
+                            <span data-lang="filter-samsung">Samsung 系列</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">
+                        <span data-lang="footer-contact">聯絡資訊</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone mr-2"></i> 852 9047 2207
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope mr-2"></i> RichardGonzalez1721@outlook.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-map-marker-alt mr-2"></i> 香港九龍旺角彌敦道688號
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 GREY GLOBAL LIMITED. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-grey-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all hover:bg-grey-secondary">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const html = document.documentElement;
+        
+        // Check system preference on load
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Brand Filter
+        const brandFilters = document.querySelectorAll('.brand-filter');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        brandFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                brandFilters.forEach(f => f.classList.remove('active', 'bg-grey-primary', 'text-white'));
+                brandFilters.forEach(f => f.classList.add('bg-white', 'dark:bg-grey-secondary', 'text-grey-primary', 'dark:text-white', 'border'));
+                
+                // Add active class to clicked filter
+                filter.classList.add('active', 'bg-grey-primary', 'text-white');
+                filter.classList.remove('bg-white', 'dark:bg-grey-secondary', 'text-grey-primary', 'dark:text-white', 'border');
+                
+                const brand = filter.dataset.brand;
+                
+                // Show/hide products based on filter
+                productCards.forEach(card => {
+                    if (brand === 'all' || card.dataset.brand === brand) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Back to Top Button
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('感謝您的留言！我們會盡快與您聯絡。');
+            contactForm.reset();
+        });
+        
+        // Language Switch
+        const langSwitch = document.getElementById('lang-switch');
+        const currentLang = document.getElementById('current-lang');
+        
+        // Language translations
+        const translations = {
+            en: {
+                'nav-home': 'Home',
+                'nav-products': 'Products',
+                'nav-about': 'About Us',
+                'nav-contact': 'Contact',
+                'lang-zh': 'EN',
+                'hero-title': 'Premium Phone Cases',
+                'hero-subtitle': 'Exquisite Customization',
+                'hero-desc': 'GREY GLOBAL LIMITED specializes in high-quality genuine leather phone case design and manufacturing, providing perfect protection for your device. Compatible with Apple, Huawei, Samsung and other brands.',
+                'btn-shop': 'Shop Now',
+                'btn-learn': 'Learn More',
+                'features-title': 'Why Choose Us',
+                'features-desc': 'We are committed to quality, providing customers with the best products and services',
+                'feature-1': 'Premium Materials',
+                'feature-1-desc': 'Top-grade genuine leather materials with exceptional texture',
+                'feature-2': 'Precise Fit',
+                'feature-2-desc': 'Precisely matches various phone models',
+                'feature-3': 'Quality Assurance',
+                'feature-3-desc': 'Strict quality control process to ensure quality',
+                'feature-4': 'After-sales Service',
+                'feature-4-desc': 'Comprehensive after-sales service system',
+                'products-title': 'Featured Products',
+                'products-desc': 'Explore our carefully designed premium phone case collection',
+                'filter-all': 'All',
+                'filter-apple': 'Apple',
+                'filter-huawei': 'Huawei',
+                'filter-samsung': 'Samsung',
+                'brand-apple': 'Apple',
+                'brand-huawei': 'Huawei',
+                'brand-samsung': 'Samsung',
+                'btn-detail': 'View Details',
+                'btn-view-all': 'View All Products',
+                'about-title': 'About GREY GLOBAL',
+                'about-desc-1': 'GREY GLOBAL LIMITED was founded in Hong Kong, focusing on high-end mobile accessories R&D and sales. We insist on using the finest materials combined with exquisite craftsmanship to provide customers with exceptional product experience.',
+                'about-desc-2': 'Our core team has over 10 years of experience in the mobile accessories industry, understanding consumers\' pursuit of quality. Every product undergoes strict quality testing to ensure the perfect protection solution for customers.',
+                'about-desc-3': 'Whether it\'s Apple, Huawei or Samsung, we can provide precisely matched phone cases to give your device comprehensive protection.',
+                'stat-1': 'Years Experience',
+                'stat-2': 'Phone Models',
+                'stat-3': 'Satisfied Customers',
+                'contact-title': 'Contact Us',
+                'contact-desc': 'For any inquiries or cooperation opportunities, please feel free to contact us',
+                'contact-address': 'Company Address',
+                'contact-phone': 'Phone Number',
+                'contact-email': 'Email',
+                'contact-person': 'Contact Person',
+                'form-name': 'Name',
+                'form-email': 'Email',
+                'form-subject': 'Subject',
+                'form-message': 'Message',
+                'btn-submit': 'Send Message',
+                'footer-desc': 'Specializing in high-quality phone case design and manufacturing, providing perfect protection for your device.',
+                'footer-links': 'Quick Links',
+                'footer-products': 'Product Series',
+                'footer-contact': 'Contact Information'
+            },
+            zh: {
+                'nav-home': '首頁',
+                'nav-products': '產品',
+                'nav-about': '關於我們',
+                'nav-contact': '聯絡我們',
+                'lang-zh': '繁',
+                'hero-title': '高品質手機殼',
+                'hero-subtitle': '精緻定制',
+                'hero-desc': 'GREY GLOBAL LIMITED 專注於高品質真皮手機殼的設計與製造，為您的愛機提供完美保護。適用於蘋果、華為、三星等多個品牌。',
+                'btn-shop': '立即購買',
+                'btn-learn': '了解更多',
+                'features-title': '為什麼選擇我們',
+                'features-desc': '我們堅持品質至上，為客戶提供最優質的產品和服務',
+                'feature-1': '優質材料',
+                'feature-1-desc': '採用頂級真皮材料，質感卓越',
+                'feature-2': '精準版型',
+                'feature-2-desc': '精確匹配各種手機型號',
+                'feature-3': '品質保證',
+                'feature-3-desc': '嚴格品控流程，確保品質',
+                'feature-4': '售後服務',
+                'feature-4-desc': '完善的售後服務體系',
+                'products-title': '精選產品',
+                'products-desc': '探索我們精心設計的高品質手機殼系列',
+                'filter-all': '全部',
+                'filter-apple': 'Apple',
+                'filter-huawei': 'Huawei',
+                'filter-samsung': 'Samsung',
+                'brand-apple': 'Apple',
+                'brand-huawei': 'Huawei',
+                'brand-samsung': 'Samsung',
+                'btn-detail': '查看詳情',
+                'btn-view-all': '查看全部產品',
+                'about-title': '關於 GREY GLOBAL',
+                'about-desc-1': 'GREY GLOBAL LIMITED 成立於香港，專注於高端手機配件的研發與銷售。我們堅持使用最優質的材料，結合精湛的工藝，為客戶提供卓越的產品體驗。',
+                'about-desc-2': '我們的核心團隊擁有超過10年的手機配件行業經驗，深知消費者對品質的追求。每一款產品都經過嚴格的品質檢測，確保為客戶帶來最完美的保護方案。',
+                'about-desc-3': '無論是蘋果、華為還是三星，我們都能提供精確匹配的手機殼，讓您的愛機得到全方位的保護。',
+                'stat-1': '年行業經驗',
+                'stat-2': '手機型號',
+                'stat-3': '滿意客戶',
+                'contact-title': '聯絡我們',
+                'contact-desc': '如有任何查詢或合作意向，歡迎隨時聯絡我們',
+                'contact-address': '公司地址',
+                'contact-phone': '聯絡電話',
+                'contact-email': '電子郵箱',
+                'contact-person': '聯絡人',
+                'form-name': '姓名',
+                'form-email': '電子郵箱',
+                'form-subject': '主題',
+                'form-message': '留言',
+                'btn-submit': '發送留言',
+                'footer-desc': '專注於高品質手機殼的設計與製造，為您的愛機提供完美保護。',
+                'footer-links': '快速連結',
+                'footer-products': '產品系列',
+                'footer-contact': '聯絡資訊'
+            }
+        };
+        
+        let currentLanguage = localStorage.getItem('language') || 'zh';
+        
+        function switchLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('language', currentLanguage);
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[currentLanguage][key]) {
+                    el.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            // Update language button text
+            currentLang.textContent = currentLanguage === 'zh' ? '繁' : 'EN';
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLanguage === 'zh' ? 'zh-HK' : 'en';
+        }
+        
+        langSwitch.addEventListener('click', switchLanguage);
+        
+        // Initialize language on load
+        switchLanguage();
+    </script>
+</body>
+</html>

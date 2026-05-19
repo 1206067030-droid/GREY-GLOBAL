@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Icons</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+        .icon-container { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        canvas { border: 1px solid #eee; margin: 10px 0; }
+        button { padding: 10px 20px; background: #1a1a1a; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #4a4a4a; }
+    </style>
+</head>
+<body>
+    <h1>Generate Icons for GREY GLOBAL</h1>
+    <p>点击按钮下载各个尺寸的图标</p>
+    
+    <div class="icon-container">
+        <h3>Apple Touch Icon (180x180)</h3>
+        <canvas id="canvas-180" width="180" height="180"></canvas>
+        <br>
+        <button onclick="downloadIcon('canvas-180', 'apple-touch-icon.png')">下载 180x180</button>
+    </div>
+    
+    <div class="icon-container">
+        <h3>Favicon (32x32)</h3>
+        <canvas id="canvas-32" width="32" height="32"></canvas>
+        <br>
+        <button onclick="downloadIcon('canvas-32', 'favicon-32x32.png')">下载 32x32</button>
+    </div>
+    
+    <div class="icon-container">
+        <h3>Favicon (16x16)</h3>
+        <canvas id="canvas-16" width="16" height="16"></canvas>
+        <br>
+        <button onclick="downloadIcon('canvas-16', 'favicon-16x16.png')">下载 16x16</button>
+    </div>
+
+    <script>
+        // Function to draw our GG logo
+        function drawLogo(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const padding = size * 0.15;
+            const contentSize = size - padding * 2;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Draw rounded square background
+            const borderRadius = size * 0.2;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.beginPath();
+            ctx.roundRect(padding, padding, contentSize, contentSize, borderRadius);
+            ctx.fill();
+
+            // Draw "GG" text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${size * 0.35}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('GG', size / 2, size / 2);
+        }
+
+        // Polyfill for roundRect if not supported
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                if (typeof radius === 'number') {
+                    radius = {tl: radius, tr: radius, br: radius, bl: radius};
+                }
+                this.moveTo(x + radius.tl, y);
+                this.lineTo(x + width - radius.tr, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+                this.lineTo(x + width, y + height - radius.br);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+                this.lineTo(x + radius.bl, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+                this.lineTo(x, y + radius.tl);
+                this.quadraticCurveTo(x, y, x + radius.tl, y);
+                this.closePath();
+            };
+        }
+
+        // Draw all icons
+        drawLogo(document.getElementById('canvas-180'), 180);
+        drawLogo(document.getElementById('canvas-32'), 32);
+        drawLogo(document.getElementById('canvas-16'), 16);
+
+        // Download function
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
